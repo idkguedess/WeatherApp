@@ -4,18 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abdb4deb-5e1b-4e3d-9da5-10810fdc5093" name="Changes" comment="Basic structure commit">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ulpgc/dacd/model/Clouds.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ulpgc/dacd/model/Coord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ulpgc/dacd/model/Sys.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ulpgc/dacd/model/WeatherData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ulpgc/dacd/model/WeatherMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ulpgc/dacd/model/Wind.java" afterDir="false" />
+    <list default="true" id="abdb4deb-5e1b-4e3d-9da5-10810fdc5093" name="Changes" comment="Model commit">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ulpgc/dacd/control/OpenWeatherMapProvider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ulpgc/dacd/control/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ulpgc/dacd/control/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ulpgc/dacd/model/Location.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ulpgc/dacd/model/Weather.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ulpgc/dacd/model/Weather.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ulpgc/dacd/control/WeatherProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ulpgc/dacd/control/WeatherProvider.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +74,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699818838939</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Model commit">
+      <option name="closed" value="true" />
+      <created>1699894568291</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1699894568291</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -95,7 +96,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="origin/master" />
                       </list>
                     </value>
                   </entry>
@@ -110,7 +111,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Class/Interface commit" />
     <MESSAGE value="Basic structure commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Basic structure commit" />
+    <MESSAGE value="Model commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Model commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
