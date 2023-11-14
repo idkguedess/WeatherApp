@@ -7,6 +7,9 @@ public class Sys {
 	private long sunrise;
 	private long sunset;
 
+	public Sys(){
+	}
+
 	public Sys(int type, int id, String country, long sunrise, long sunset) {
 		this.type = type;
 		this.id = id;

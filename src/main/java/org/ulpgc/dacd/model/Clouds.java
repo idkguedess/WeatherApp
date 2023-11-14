@@ -3,6 +3,9 @@ package org.ulpgc.dacd.model;
 public class Clouds {
 	private int all;
 
+	public Clouds(){
+	}
+
 	public Clouds(int all) {
 		this.all = all;
 	}

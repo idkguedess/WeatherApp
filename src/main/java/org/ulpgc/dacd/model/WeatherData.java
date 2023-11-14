@@ -17,6 +17,9 @@ public class WeatherData {
 	private String name;
 	private int cod;
 
+	public WeatherData(){
+	}
+
 	public WeatherData(
 			Coord coord, List<Weather> weather, String base, WeatherMain main, int visibility,
 			Wind wind, Clouds clouds, long dt, Sys sys, int timezone, int id, String name, int cod) {
