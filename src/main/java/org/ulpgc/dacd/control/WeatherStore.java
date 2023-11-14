@@ -13,7 +13,6 @@ public class WeatherStore {
 		try (Connection connection = DriverManager.getConnection(DB_URL);
 			 Statement statement = connection.createStatement()) {
 
-			// Crea la tabla si no existe
 			statement.executeUpdate("CREATE TABLE IF NOT EXISTS \"" + island + "\" (" +
 					"id INTEGER PRIMARY KEY AUTOINCREMENT," +
 					"date TEXT NOT NULL," +
@@ -22,12 +21,10 @@ public class WeatherStore {
 					"wind_speed REAL NOT NULL," +
 					"clouds_all INTEGER NOT NULL);");
 
-			// Inserta los datos meteorológicos
 			try (PreparedStatement preparedStatement = connection.prepareStatement(
 					"INSERT INTO \"" + island + "\" (date, temperature, humidity, wind_speed, clouds_all) " +
 							"VALUES (?, ?, ?, ?, ?)")) {
 
-				// Formatea la fecha como una cadena
 				String formattedDate = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
 				preparedStatement.setString(1, formattedDate);
