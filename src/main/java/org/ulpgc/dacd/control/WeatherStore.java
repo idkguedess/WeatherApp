@@ -4,6 +4,7 @@ import org.ulpgc.dacd.model.WeatherData;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class WeatherStore {
 	private static final String DB_URL = "jdbc:sqlite:weather_data.db";
@@ -15,7 +16,7 @@ public class WeatherStore {
 			// Crea la tabla si no existe
 			statement.executeUpdate("CREATE TABLE IF NOT EXISTS \"" + island + "\" (" +
 					"id INTEGER PRIMARY KEY AUTOINCREMENT," +
-					"date DATE NOT NULL," +
+					"date TEXT NOT NULL," +
 					"temperature REAL NOT NULL," +
 					"humidity INTEGER NOT NULL," +
 					"wind_speed REAL NOT NULL," +
@@ -26,7 +27,10 @@ public class WeatherStore {
 					"INSERT INTO \"" + island + "\" (date, temperature, humidity, wind_speed, clouds_all) " +
 							"VALUES (?, ?, ?, ?, ?)")) {
 
-				preparedStatement.setDate(1, java.sql.Date.valueOf(date));
+				// Formatea la fecha como una cadena
+				String formattedDate = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+				preparedStatement.setString(1, formattedDate);
 				preparedStatement.setDouble(2, weatherData.getMain().getTemp());
 				preparedStatement.setInt(3, weatherData.getMain().getHumidity());
 				preparedStatement.setDouble(4, weatherData.getWind().getSpeed());
