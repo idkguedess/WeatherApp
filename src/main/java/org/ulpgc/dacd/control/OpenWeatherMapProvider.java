@@ -18,11 +18,13 @@ public class OpenWeatherMapProvider implements WeatherProvider {
 	private static final String API_KEY = "4fca9117f3ac0d66b70f8519ec987c00";
 	private static final String API_ENDPOINT = "https://api.openweathermap.org/data/2.5/weather";
 
+	private static final String unit = "metric";
+
 	@Override
 	public WeatherData getWeatherData(double latitude, double longitude) throws IOException {
 		HttpClient httpClient = HttpClients.createDefault();
 
-		String url = String.format("%s?lat=%f&lon=%f&appid=%s", API_ENDPOINT, latitude, longitude, API_KEY);
+		String url = String.format("%s?lat=%f&lon=%f&appid=%s&units=%s", API_ENDPOINT, latitude, longitude, API_KEY, unit);
 
 		HttpGet httpGet = new HttpGet(url);
 		HttpResponse httpResponse = httpClient.execute(httpGet);

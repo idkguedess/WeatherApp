@@ -13,7 +13,7 @@ public class Main {
 		timer.schedule(new TimerTask() {
 			@Override
 			public void run() {
-				weatherController.updateWeatherData("Gran Canaria", 27.9580004, -15.6062305376665);
+				weatherController.updateWeatherData("Gran Canaria", 28.1288694, -15.4349015);
 			}
 		}, 0, 6 * 60 * 60 * 1000);
 	}
