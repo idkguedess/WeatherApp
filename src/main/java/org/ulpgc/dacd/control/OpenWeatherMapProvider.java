@@ -13,18 +13,19 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 public class OpenWeatherMapProvider implements WeatherProvider {
 	private static final String API_KEY = "4fca9117f3ac0d66b70f8519ec987c00";
 	private static final String API_ENDPOINT = "https://api.openweathermap.org/data/2.5/weather";
 
-	private static final String unit = "metric";
-
 	@Override
-	public WeatherData getWeatherData(double latitude, double longitude) throws IOException {
+	public WeatherData getWeatherData(double latitude, double longitude, LocalDateTime dateTime) throws IOException {
 		HttpClient httpClient = HttpClients.createDefault();
 
-		String url = String.format("%s?lat=%f&lon=%f&appid=%s&units=%s", API_ENDPOINT, latitude, longitude, API_KEY, unit);
+		String url = String.format("%s?lat=%f&lon=%f&dt=%d&appid=%s&units=metric",
+				API_ENDPOINT, latitude, longitude, dateTime.toEpochSecond(ZoneOffset.UTC), API_KEY);
 
 		HttpGet httpGet = new HttpGet(url);
 		HttpResponse httpResponse = httpClient.execute(httpGet);

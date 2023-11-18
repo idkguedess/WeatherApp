@@ -3,13 +3,13 @@ package org.ulpgc.dacd.control;
 import org.ulpgc.dacd.model.WeatherData;
 
 import java.sql.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class WeatherStore {
 	private static final String DB_URL = "jdbc:sqlite:weather_data.db";
 
-	public void saveWeatherData(String island, LocalDate date, WeatherData weatherData) {
+	public void saveWeatherData(String island, LocalDateTime dateTime, WeatherData weatherData) {
 		try (Connection connection = DriverManager.getConnection(DB_URL);
 			 Statement statement = connection.createStatement()) {
 
@@ -25,7 +25,7 @@ public class WeatherStore {
 					"INSERT INTO \"" + island + "\" (date, temperature, humidity, wind_speed, clouds_all) " +
 							"VALUES (?, ?, ?, ?, ?)")) {
 
-				String formattedDate = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+				String formattedDate = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
 				preparedStatement.setString(1, formattedDate);
 				preparedStatement.setDouble(2, weatherData.getMain().getTemp());
@@ -48,3 +48,7 @@ public class WeatherStore {
 		}
 	}
 }
+
+
+
+
