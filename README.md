@@ -30,7 +30,7 @@ La estructura del código se divide en dos capas.
 1. Model: contiene todo el código referente a los objetos que contendrán los datos meteorológicos.
 2. Control: contiene todo el código referente a obtener los datos, deserializarlos y almacenarlos en la base de datos.
 
-Se ha intentado cumplir en la mayor medida posible los siguientes principios:
+Se ha intentado cumplir en la mayor medida posible con los siguientes principios:
 1. DRY (Don't repeat yourself).
 2. KISS (Keep it Simple Stupid).
 3. SoC (Separation of Concerns).
