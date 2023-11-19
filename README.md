@@ -17,7 +17,7 @@ velocidad del viento y las nubes.
 
 ### Recursos utilizados
 
-Para el desarrollo del proyecto se ha realizado en Maven utilizando el entorno Intellij. Se ha utilizado Git como herramienta
+El desarrollo del proyecto se ha realizado en Maven utilizando el entorno Intellij. Se ha utilizado Git como herramienta
 de control de versiones local y GitHub en línea. Para la obtención y persistencia de los datos, se han utilizado diferentes
 librerías:
 * HttpClient de Apache como cliente http.
