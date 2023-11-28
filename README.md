@@ -11,7 +11,7 @@ Universidad de Las Palmas de Gran Canaria.**
 ### Resumen de funcionalidad
 
 El programa obtiene la predicción metereológica de los próximos 5 días a las 12 pm de las 8 islas de Canarias. Para ello,
-consulta la API de [OpenWeatherMap](openweathermap.org/api "OpenWeatherMap"). Estos datos son posteriormente
+consulta la API de [OpenWeatherMap](https://openweathermap.org/api "OpenWeatherMap"). Estos datos son posteriormente
 almacenados en una base de datos de tipo SQL, con una tabla para cada isla con las fechas, temperaturas, humedad,
 velocidad del viento y las nubes.
 
