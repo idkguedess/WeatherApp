@@ -11,7 +11,7 @@ public class WeatherStore {
 
 	public void saveWeatherData(String island, LocalDateTime dateTime, WeatherData weatherData) {
 		try (Connection connection = DriverManager.getConnection(DB_URL);
-			 Statement statement = connection.createStatement()) {
+		     Statement statement = connection.createStatement()) {
 
 			statement.executeUpdate("CREATE TABLE IF NOT EXISTS \"" + island + "\" (" +
 					"id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -21,24 +21,54 @@ public class WeatherStore {
 					"wind_speed REAL NOT NULL," +
 					"clouds_all INTEGER NOT NULL);");
 
-			try (PreparedStatement preparedStatement = connection.prepareStatement(
-					"INSERT INTO \"" + island + "\" (date, temperature, humidity, wind_speed, clouds_all) " +
-							"VALUES (?, ?, ?, ?, ?)")) {
+			String formattedDate = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-				String formattedDate = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			boolean dataExists = false;
+			try (PreparedStatement checkStatement = connection.prepareStatement(
+					"SELECT COUNT(*) FROM \"" + island + "\" WHERE date = ?")) {
+				checkStatement.setString(1, formattedDate);
+				ResultSet resultSet = checkStatement.executeQuery();
+				if (resultSet.next()) {
+					int rowCount = resultSet.getInt(1);
+					dataExists = rowCount > 0;
+				}
+			}
 
-				preparedStatement.setString(1, formattedDate);
-				preparedStatement.setDouble(2, weatherData.getMain().getTemp());
-				preparedStatement.setInt(3, weatherData.getMain().getHumidity());
-				preparedStatement.setDouble(4, weatherData.getWind().getSpeed());
-				preparedStatement.setInt(5, weatherData.getClouds().getAll());
+			if (dataExists) {
+				try (PreparedStatement updateStatement = connection.prepareStatement(
+						"UPDATE \"" + island + "\" SET temperature=?, humidity=?, wind_speed=?, clouds_all=? WHERE date=?")) {
+					updateStatement.setDouble(1, weatherData.getMain().getTemp());
+					updateStatement.setInt(2, weatherData.getMain().getHumidity());
+					updateStatement.setDouble(3, weatherData.getWind().getSpeed());
+					updateStatement.setInt(4, weatherData.getClouds().getAll());
+					updateStatement.setString(5, formattedDate);
 
-				int rowsAffected = preparedStatement.executeUpdate();
+					int rowsAffected = updateStatement.executeUpdate();
 
-				if (rowsAffected > 0) {
-					System.out.println("Datos meteorológicos guardados correctamente para " + island);
-				} else {
-					System.err.println("Error al insertar datos meteorológicos para " + island + ". No se afectaron filas.");
+					if (rowsAffected > 0) {
+						System.out.println("Datos meteorológicos actualizados correctamente para " + island + " en la fecha " + formattedDate);
+					} else {
+						System.err.println("Error al actualizar datos meteorológicos para " + island + " en la fecha " + formattedDate + ". No se afectaron filas.");
+					}
+				}
+			} else {
+				try (PreparedStatement insertStatement = connection.prepareStatement(
+						"INSERT INTO \"" + island + "\" (date, temperature, humidity, wind_speed, clouds_all) " +
+								"VALUES (?, ?, ?, ?, ?)")) {
+
+					insertStatement.setString(1, formattedDate);
+					insertStatement.setDouble(2, weatherData.getMain().getTemp());
+					insertStatement.setInt(3, weatherData.getMain().getHumidity());
+					insertStatement.setDouble(4, weatherData.getWind().getSpeed());
+					insertStatement.setInt(5, weatherData.getClouds().getAll());
+
+					int rowsAffected = insertStatement.executeUpdate();
+
+					if (rowsAffected > 0) {
+						System.out.println("Datos meteorológicos guardados correctamente para " + island + " en la fecha " + formattedDate);
+					} else {
+						System.err.println("Error al insertar datos meteorológicos para " + island + " en la fecha " + formattedDate + ". No se afectaron filas.");
+					}
 				}
 			}
 
